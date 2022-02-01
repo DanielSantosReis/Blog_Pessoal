@@ -46,6 +46,10 @@ public class UsuarioService {
 		
 		return null;
 	}
-	
+
+	public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
