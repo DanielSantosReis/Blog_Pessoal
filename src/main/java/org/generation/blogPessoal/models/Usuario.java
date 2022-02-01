@@ -20,6 +20,18 @@ public class Usuario {
 	private @NotBlank String usuario;
 	@Size(max = 80)
 	private @NotBlank String senha;
+		
+	public Usuario(long id, @Size(max = 80) @NotBlank String nome, @Size(max = 80) @NotBlank String usuario,
+			@Size(max = 80) @NotBlank String senha) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+	
+	public Usuario() {	}
+	
 	
 	public long getId() {
 		return id;
