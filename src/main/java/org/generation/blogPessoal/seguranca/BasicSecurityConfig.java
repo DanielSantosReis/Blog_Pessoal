@@ -27,7 +27,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(service);
 
 		auth.inMemoryAuthentication().withUser("root").password(passwordEncoder().encode("root"))
-				.authorities("ROLE_ADMIN");
+				.authorities("ROLE_USER");
 	}
 
 	@Override
