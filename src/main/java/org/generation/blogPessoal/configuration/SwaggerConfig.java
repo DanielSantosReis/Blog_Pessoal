@@ -15,40 +15,30 @@ public class SwaggerConfig {
 	@Bean
 	public OpenAPI springBlogPessoalOpenAPI() {
 		return new OpenAPI()
-				.info(new Info()
-						.title("Projeto Meu Blog Pessoal")
-						.description("Projeto Meu Blog Pessoal - Generation Brasil")
-						.version("v0.0.1")
-						.license(new License()
-								.name("Meu Blog Pessoal")
-								.url("<https://brazil.generation.org/>"))
-						.contact(new Contact()
-								.name("Daniel Reis")
-								.url("https://github.com/DanielSantosReis")
+				.info(new Info().title("Projeto Meu Blog Pessoal")
+						.description("Projeto Meu Blog Pessoal - Generation Brasil").version("v0.0.1")
+						.license(new License().name("Meu Blog Pessoal").url("<https://brazil.generation.org/>"))
+						.contact(new Contact().name("Daniel Reis").url("https://github.com/DanielSantosReis")
 								.email("kr.danielreis@gmail.com")))
-				.externalDocs(new ExternalDocumentation()
-						.description("Github")
+				.externalDocs(new ExternalDocumentation().description("Github")
 						.url("https://github.com/conteudoGeneration/"));
 	}
 
 	@Bean
-	public OpenApiCustomiser customerGlobalHeaderOpenApiCustomiser() {
-
+	public OpenApiCustomiser customerGlobalResponseStatus() {
 		return openApi -> {
 			openApi.getPaths().values().forEach(pathItem -> pathItem.readOperations().forEach(operation -> {
+				ApiResponses api = operation.getResponses();
 
-				ApiResponses apiResponses = operation.getResponses();
-
-				apiResponses.addApiResponse("200", createApiResponse("Sucesso!"));
-				apiResponses.addApiResponse("201", createApiResponse("Objeto Persistido!"));
-				apiResponses.addApiResponse("204", createApiResponse("Objeto Excluído!"));
-				apiResponses.addApiResponse("400", createApiResponse("Erro na Requisição!"));
-				apiResponses.addApiResponse("401", createApiResponse("Acesso Não Autorizado!"));
-				apiResponses.addApiResponse("404", createApiResponse("Objeto Não Encontrado!"));
-				apiResponses.addApiResponse("500", createApiResponse("Erro na Aplicação!"));
-
+				api.addApiResponse("200", createApiResponse("Sucess!"));
+				api.addApiResponse("201", createApiResponse("Created!"));
+				api.addApiResponse("400", createApiResponse("Request error!"));
+				api.addApiResponse("401", createApiResponse("Not authorized!"));
+				api.addApiResponse("500", createApiResponse("Internal server Error!"));
 			}));
+
 		};
+
 	}
 
 	private ApiResponse createApiResponse(String message) {
